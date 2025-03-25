@@ -1,0 +1,42 @@
+﻿@model ZENSUI_SINSAKAI.Models.Sinsakai
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div id="my-main2">
+    <div id="itiran">
+        <div id="itiran-title">@Model.SinsakaiName<br />採点者　@Model.SaitensyaName</div>
+        <input id="category1" class="my-category" type="button" value="第１類" />
+        <input id="category2" class="my-category" type="button" value="第２類" />
+        <input id="category3" class="my-category" type="button" value="第３類" />
+        <input id="category4" class="my-category" type="button" value="第４類" />
+        <input id="category5" class="my-category" type="button" value="第５類" />
+        <div id="div-table">
+            <table id="my-table2">
+                @for (var i = 0; i < Model.SyuppinList.Count; i++)
+                {
+                    <tr onclick="syuppinListClick(@Model.SyuppinList[i].RowNo, @Model.SinsakaiId, @Model.SyuppinList[i].SyuppinNo, @Model.SaitensyaId)">
+                        <td style="width: 85%">
+                            <div class="div-color1">@Model.SyuppinList[i].RowNo　@Model.SyuppinList[i].Title</div>
+                        </td>
+                        <td class="td-center" style="width: 15%; pointer-events: none;">
+                            <input type="text" class="text-score-total2" asp-for="@Model.ScoreTotalList[i]" style="background-color: @(Model.ScoreTotalList[i] == null ? "lightsteelblue" : "white")" readonly />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function syuppinListClick(rowNo, sinsakaiId, syuppinNo, saitensyaId) {
+            WebStorage.setItem("SinsakaiId", sinsakaiId);
+            WebStorage.setItem("SyuppinNo", syuppinNo);
+            WebStorage.setItem("SaitensyaId", saitensyaId);
+            window.location.replace("/Home/Syousai/" + rowNo + "/" + sinsakaiId + "/" + syuppinNo);
+        }
+    </script>
+}

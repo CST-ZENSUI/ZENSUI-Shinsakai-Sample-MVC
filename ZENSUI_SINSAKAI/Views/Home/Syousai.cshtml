@@ -1,0 +1,468 @@
+﻿@model ZENSUI_SINSAKAI.Models.Syuppin
+
+@{
+    ViewData["Title"] = "Syousai";
+}
+
+<div id="my-main">
+    <table id="my-table">
+        <tr style="font-size: 27px">
+            <th class="th-color1" style="width: 12.5%; height: 47px">@Model.RowNo</th>
+            <th colspan="7" class="th-color2" style="width: 87.5%">@Model.Title</th>
+        </tr>
+        <tr>
+            <td colspan="4" class="td-center" style="width: 50%; height: 260px; border-right: none">
+                <img class="my-image" src="@Model.Image1" alt="" />
+            </td>
+            <td colspan="4" class="td-center" style="width: 50%; height: 260px; border-left: none">
+                <img class="my-image" src="@Model.Image2" alt="" />
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" style="width: 25%; height: 27px">製品区分</th>
+            <th colspan="2" style="width: 25%">出品区分</th>
+            <th colspan="2" style="width: 25%">１個当り重量</th>
+            <th colspan="2" style="width: 25%">標準小売価格（税込み）</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.SeihinKubun</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.SyuppinKubun</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.IkkoatariZyuuryou</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.HyouzyunKouriKakaku</td>
+        </tr>
+        <tr>
+            <th colspan="8" style="width: 100%; height: 27px">使用原材料（一括表示）</th>
+        </tr>
+        <tr>
+            <td colspan="8" style="width: 100%; height: 54px">@Model.SiyouGenzairyou</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="width: 25%; height: 27px">原産国区分</th>
+            <th colspan="2" style="width: 25%">アレルギー特定８品目</th>
+            <th colspan="2" style="width: 25%">賞味期限</th>
+            <th colspan="2" style="width: 25%">保存条件</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.GensankokuKubun</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.AllergyTokuteiHatihinmoku</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.SyoumiKigen</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.HozonZyouken</td>
+        </tr>
+        <tr>
+            <th colspan="4" style="width: 50%; height: 27px">原料について</th>
+            <th colspan="4" style="width: 50%">おいしさについて</th>
+        </tr>
+        <tr>
+            <td colspan="4" style="width: 50%; height: 90px">@Model.Genryou</td>
+            <td colspan="4" style="width: 50%">@Model.Oisisa</td>
+        </tr>
+        <tr>
+            <th colspan="4" style="width: 50%; height: 27px">生産技術について</th>
+            <th colspan="4" style="width: 50%">安全性（衛生面）について</th>
+        </tr>
+        <tr>
+            <td colspan="4" style="width: 50%; height: 90px">@Model.SeisanGizyutu</td>
+            <td colspan="4" style="width: 50%">@Model.Anzensei</td>
+        </tr>
+        <tr>
+            <th colspan="4" style="width: 50%; height: 27px">食べ方、調理方法について</th>
+            <th colspan="4" style="width: 50%">地域貢献、ＣＳＲ、ＳＤＧｓ等の取組など</th>
+        </tr>
+        <tr>
+            <td colspan="4" style="width: 50%; height: 90px">@Model.Tabekata</td>
+            <td colspan="4" style="width: 50%">@Model.TiikiKouken</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="width: 25%; height: 27px">入数</th>
+            <th colspan="2" style="width: 25%">小売用／業務用</th>
+            <th colspan="2" style="width: 25%">受賞歴</th>
+            <th colspan="2" style="width: 25%">製造販売開始時期</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.Nyuusuu</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.KouriyouGyoumuyou</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.Zyusyoureki</td>
+            <td colspan="2" class="td-center" style="width: 25%">@Model.SeizouHanbaiKaisiziki</td>
+        </tr>
+        <tr>
+            <th class="th-color1" style="width: 12.5%; height: 27px">原料（１０点）</th>
+            <th class="th-color1" style="width: 12.5%; font-size: 13px">官能特性（３０点）</th>
+            <th class="th-color1" style="width: 12.5%">着想（２０点）</th>
+            <th class="th-color1" style="width: 12.5%">技術（２０点）</th>
+            <th class="th-color1" style="width: 12.5%">包装（２０点）</th>
+            <th class="th-color3" colspan="2" style="width: 25%">合計点（１００点）</th>
+            <th class="th-color1" style="width: 12.5%">マーク</th>
+        </tr>
+        <tr>
+            <td style="width: 12.5%; height: 40px"></td>
+            <td style="width: 12.5%"></td>
+            <td style="width: 12.5%"></td>
+            <td style="width: 12.5%"></td>
+            <td style="width: 12.5%"></td>
+            <td colspan="2" style="width: 25%"></td>
+            <td style="width: 12.5%"></td>
+        </tr>
+        <tr>
+            <th class="th-color1" style="width: 12.5%; height: 132px">特記事項</th>
+            <td colspan="7" style="width: 87.5%"></td>
+        </tr>
+    </table>
+    <span id="layerd-canvas-area">
+        <canvas id="draw-area" width="980" height="1100" style="touch-action: pinch-zoom; border:none;"></canvas>
+        <canvas id="line-width-indicator" width="980" height="1100" style="touch-action: pinch-zoom; border:none;"></canvas>
+    </span>
+    <div id="my-score">
+        <input type="text" id="score-genryou" class="text-score" onclick="textScoreClick(ModalTarget.GENRYOU, 11)" readonly /><!--
+     --><input type="text" id="score-kannou-tokusei" class="text-score" onclick="textScoreClick(ModalTarget.KANNOU_TOKUSEI, 31)" readonly /><!--
+     --><input type="text" id="score-tyakusou" class="text-score" onclick="textScoreClick(ModalTarget.TYAKUSOU, 21)" readonly /><!--
+     --><input type="text" id="score-gizyutu" class="text-score" onclick="textScoreClick(ModalTarget.GIZYUTU, 21)" readonly /><!--
+     --><input type="text" id="score-housou" class="text-score" onclick="textScoreClick(ModalTarget.HOUSOU, 21)" readonly /><!--
+     --><input type="text" id="score-total" class="text-score-total" readonly />
+    </div>
+</div>
+<br />
+<div id="my-action">
+    <input id="modoruButton" type="button" value="戻る" onclick="modoruClick()" />
+    <label>
+        <input type="radio" name="inputType" value="1" checked />ペン入力
+    </label>
+    <label>
+        <input type="radio" name="inputType" value="2" />消しゴム（小）
+    </label>
+    <label>
+        <input type="radio" name="inputType" value="3" />消しゴム（大）
+    </label>
+    <input id="clearButton" type="button" value="内容をクリア" onclick="clearClick()" />
+    <input id="inputModeButton" type="button" value="手書き可" onclick="changeInputMode()" />
+</div>
+
+<div id="my-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 id="modal-title"></h5>
+            <span class="modal-close" onclick="modalCloseClick()">×</span>
+        </div>
+        <div id="my-modal-body" class="modal-body">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', () => {
+            inputMode = false;
+            inputType = document.getElementsByName("inputType");
+            layeredCanvasArea = document.getElementById("layerd-canvas-area");
+
+            myCanvas = document.getElementById("draw-area");
+            context = myCanvas.getContext('2d');
+
+            myCanvasForWidthIndicator = document.getElementById("line-width-indicator");
+            contextForWidthIndicator = myCanvasForWidthIndicator.getContext('2d');
+
+            layeredCanvasArea.addEventListener('pointermove', pointerMove);
+            layeredCanvasArea.addEventListener('pointerleave', pointerLeave);
+            layeredCanvasArea.addEventListener('mouseup', mouseUp);
+            layeredCanvasArea.addEventListener('touchend', mouseUp);
+
+            image = new Image();
+            image.addEventListener('load', drawImageOnCanvas);
+
+            scoreGenryou = document.getElementById('score-genryou');
+            scoreKannouTokusei = document.getElementById('score-kannou-tokusei');
+            scoreTyakusou = document.getElementById('score-tyakusou');
+            scoreGizyutu = document.getElementById('score-gizyutu');
+            scoreHousou = document.getElementById('score-housou');
+            scoreTotal = document.getElementById('score-total');
+
+            modal = document.getElementById('my-modal');
+            modalTitle = document.getElementById('modal-title');
+            modalBody = document.getElementById('my-modal-body');
+
+            modalBody.addEventListener('click', selectScore);
+
+            changeInputMode()
+
+            readImage();
+            getScore();
+        });
+
+        function drawImageOnCanvas() {
+            context.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+            context.drawImage(image, 0, 0);
+        }
+
+        function pointerMove(e) {
+            if (inputMode) {
+                let checkValue = '';
+                for (let i = 0; i < inputType.length; i++) {
+                    if (inputType.item(i).checked) {
+                        checkValue = inputType.item(i).value;
+                    }
+                }
+
+                let currentLineWidth = 1;
+                if (checkValue === '1') {
+                    context.globalCompositeOperation = "source-over";
+                    currentLineWidth = 1;
+                    context.strokeStyle = 'red';
+                } else {
+                    context.globalCompositeOperation = "destination-out";
+
+                    if (checkValue === '2') {
+                        currentLineWidth = 20;
+                    } else {
+                        currentLineWidth = 40;
+                    }
+
+                    contextForWidthIndicator.lineCap = 'round';
+                    contextForWidthIndicator.lineJoin = 'round';
+                    contextForWidthIndicator.lineWidth = 1;
+                    contextForWidthIndicator.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+                    contextForWidthIndicator.beginPath();
+                    contextForWidthIndicator.arc(e.offsetX, e.offsetY, currentLineWidth / 2, 0, 2 * Math.PI);
+                    contextForWidthIndicator.stroke();
+                }
+
+                if (e.buttons) {
+                    context.lineCap = 'round';
+                    context.lineJoin = 'round';
+                    context.lineWidth = currentLineWidth;
+                    context.beginPath()
+                    context.moveTo(e.offsetX - e.movementX, e.offsetY - e.movementY)
+                    context.lineTo(e.offsetX, e.offsetY)
+                    context.stroke()
+                    this.setPointerCapture(e.pointerId)
+                }
+            }
+        }
+
+        function pointerLeave() {
+            contextForWidthIndicator.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+        }
+
+        function mouseUp() {
+            contextForWidthIndicator.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+            uploadImage();
+        }
+
+        function textScoreClick(title, scoreNum) {
+            modalTitle.textContent = title + 'の入力';
+            modalTarget = title;
+
+            for (let i = 0; i < scoreNum; i++){
+                const scoreButton = document.createElement('input');
+                scoreButton.classList.add('score-button');
+                scoreButton.type = 'button';
+                scoreButton.value = i;
+                modalBody.appendChild(scoreButton);
+            }
+
+            const clearButton = document.createElement('input');
+            clearButton.classList.add('clear-button');
+            clearButton.type = 'button';
+            clearButton.value = 'クリア';
+            modalBody.appendChild(clearButton);
+
+            modal.style.display = 'block';
+        }
+
+        function selectScore(event) {
+            if (event.target !== event.currentTarget) {
+                const score = isNaN(event.target.defaultValue) ? '' : event.target.defaultValue;
+
+                switch (modalTarget) {
+                    case ModalTarget.GENRYOU:
+                        scoreGenryou.value = score;
+                        break;
+                    case ModalTarget.KANNOU_TOKUSEI:
+                        scoreKannouTokusei.value = score;
+                        break;
+                    case ModalTarget.TYAKUSOU:
+                        scoreTyakusou.value = score;
+                        break;
+                    case ModalTarget.GIZYUTU:
+                        scoreGizyutu.value = score;
+                        break;
+                    case ModalTarget.HOUSOU:
+                        scoreHousou.value = score;
+                        break;
+                }
+
+                if (!scoreGenryou.value && !scoreKannouTokusei.value && !scoreTyakusou.value && !scoreGizyutu.value && !scoreHousou.value) {
+                    scoreTotal.value = '';
+                }
+                else {
+                    scoreTotal.value = Number(scoreGenryou.value) + Number(scoreKannouTokusei.value) + Number(scoreTyakusou.value) + Number(scoreGizyutu.value) + Number(scoreHousou.value);
+                }
+
+                registScore(scoreGenryou.value, scoreKannouTokusei.value, scoreTyakusou.value, scoreGizyutu.value, scoreHousou.value);
+
+                modalClose();
+            }
+        }
+
+        function modalCloseClick() {
+            modalClose();
+        }
+
+        function modalClose() {
+            modal.style.display = 'none';
+
+            while (modalBody.firstChild){
+                modalBody.removeChild(modalBody.firstChild);
+            }
+        }
+
+        function modoruClick() {
+            window.location.replace("/Home");
+        }
+
+        function clearClick() {
+            context.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+            scoreGenryou.value = '';
+            scoreKannouTokusei.value = '';
+            scoreTyakusou.value = '';
+            scoreGizyutu.value = '';
+            scoreHousou.value = '';
+            scoreTotal.value = '';
+
+            uploadImage();
+            registScore();
+        }
+
+        function changeInputMode() {
+            const inputModeButton = document.getElementById("inputModeButton");
+
+            if (inputMode) {
+                inputMode = false;
+                inputModeButton.value = '手書き不可';
+                layeredCanvasArea.removeEventListener('touchend', changeTouchend);
+            }
+            else {
+                inputMode = true;
+                inputModeButton.value = '手書き可';
+                layeredCanvasArea.addEventListener('touchend', changeTouchend);
+            }
+
+            function changeTouchend(e) {
+                e.preventDefault();
+                layeredCanvasArea.dispatchEvent(new Event("click"));
+            }
+        }
+
+        async function readImage() {
+            var data =
+                {
+                    sinsakaiId: WebStorage.getItem("SinsakaiId"),
+                    syuppinNo: WebStorage.getItem("SyuppinNo"),
+                    saitensyaId: WebStorage.getItem("SaitensyaId")
+                };
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/ReadImage",
+                data: data
+            })
+            .then(
+                function (result)
+                {
+                    image.src = result;
+                },
+                function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                }
+            );
+        }
+
+        async function uploadImage() {
+            const dataUrl = context.canvas.toDataURL("image/png");
+            var postData =
+                {
+                    sinsakaiId: WebStorage.getItem("SinsakaiId"),
+                    syuppinNo: WebStorage.getItem("SyuppinNo"),
+                    saitensyaId: WebStorage.getItem("SaitensyaId"),
+                    data: dataUrl
+                };
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/UploadImage",
+                data: postData
+            })
+            .then(
+                function (result)
+                {
+                },
+                function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                }
+            );
+        }
+
+        async function getScore() {
+            var data =
+                {
+                    sinsakaiId: WebStorage.getItem("SinsakaiId"),
+                    syuppinNo: WebStorage.getItem("SyuppinNo"),
+                    saitensyaId: WebStorage.getItem("SaitensyaId")
+                };
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetScore",
+                data: data
+            })
+            .then(
+                function (result)
+                {
+                    scoreGenryou.value = result.scoreGenryou;
+                    scoreKannouTokusei.value = result.scoreKannouTokusei;
+                    scoreTyakusou.value = result.scoreTyakusou;
+                    scoreGizyutu.value = result.scoreGizyutu;
+                    scoreHousou.value = result.scoreHousou;
+                    scoreTotal.value = result.scoreTotal;
+                },
+                function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                }
+            );
+        }
+
+        async function registScore() {
+            var postData =
+                {
+                    sinsakaiId: WebStorage.getItem("SinsakaiId"),
+                    syuppinNo: WebStorage.getItem("SyuppinNo"),
+                    saitensyaId: WebStorage.getItem("SaitensyaId"),
+                    scoreGenryou: scoreGenryou.value,
+                    scoreKannouTokusei: scoreKannouTokusei.value,
+                    scoreTyakusou: scoreTyakusou.value,
+                    scoreGizyutu: scoreGizyutu.value,
+                    scoreHousou: scoreHousou.value
+                };
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/RegistScore",
+                data: postData
+            })
+            .then(
+                function (result)
+                {
+                },
+                function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                }
+            );
+        }
+
+        var ModalTarget = {
+            GENRYOU: '原料',
+            KANNOU_TOKUSEI: '官能特性',
+            TYAKUSOU: '着想',
+            GIZYUTU: '技術',
+            HOUSOU: '包装'
+        };
+    </script>
+}
