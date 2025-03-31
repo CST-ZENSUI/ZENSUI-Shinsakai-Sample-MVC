@@ -18,9 +18,9 @@
                 {
                     <tr onclick="syuppinListClick(@Model.SyuppinList[i].RowNo, @Model.SinsakaiId, @Model.SyuppinList[i].SyuppinNo, @Model.SaitensyaId)">
                         <td style="width: 85%">
-                            <div class="div-color1">@Model.SyuppinList[i].RowNo　@Model.SyuppinList[i].Title</div>
+                            <div class="div-color1">@Model.SyuppinList[i].RowNo　@Model.SyuppinList[i].Title1</div>
                         </td>
-                        <td class="td-center" style="width: 15%; pointer-events: none;">
+                        <td class="td-total-score" style="width: 15%; pointer-events: none;">
                             <input type="text" class="text-score-total2" asp-for="@Model.ScoreTotalList[i]" style="background-color: @(Model.ScoreTotalList[i] == null ? "lightsteelblue" : "white")" readonly />
                         </td>
                     </tr>

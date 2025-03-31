@@ -6,105 +6,132 @@
 
 <div id="my-main">
     <table id="my-table">
-        <tr style="font-size: 27px">
-            <th class="th-color1" style="width: 12.5%; height: 47px">@Model.RowNo</th>
-            <th colspan="7" class="th-color2" style="width: 87.5%">@Model.Title</th>
+        <tr class="tr-title tr-border-none">
+            <td class="td-row-no" style="width: 11%; height: 40px">#@Model.RowNo</td>
+            <td colspan="4" style="width: 44%">@Model.Title1</td>
+            <td colspan="4" style="width: 44%">@Model.Title2</td>
         </tr>
-        <tr>
-            <td colspan="4" class="td-center" style="width: 50%; height: 260px; border-right: none">
+        <tr class="tr-border-none">
+            <td colspan="9" class="td-color1" style="height: 4px;"></td>
+        </tr>
+        <tr class="tr-border-none">
+            <td colspan="3" style="width: 33%; height: 210px;">
                 <img class="my-image" src="@Model.Image1" alt="" />
             </td>
-            <td colspan="4" class="td-center" style="width: 50%; height: 260px; border-left: none">
+            <td colspan="3" style="width: 33%; height: 210px;">
                 <img class="my-image" src="@Model.Image2" alt="" />
+            </td>
+            <td colspan="3" style="width: 33%; height: 210px;">
+                <img class="my-image" src="@Model.Image3" alt="" />
             </td>
         </tr>
         <tr>
-            <th colspan="2" style="width: 25%; height: 27px">製品区分</th>
-            <th colspan="2" style="width: 25%">出品区分</th>
-            <th colspan="2" style="width: 25%">１個当り重量</th>
-            <th colspan="2" style="width: 25%">標準小売価格（税込み）</th>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 32px">製品区分</td>
+            <td style="width: 11%">@Model.SeihinKubun</td>
+            <td class="td-color2 td-item-name" style="width: 11%">出品区分</td>
+            <td style="width: 11%">@Model.SyuppinKubun</td>
+            <td class="td-color2 td-item-name" style="width: 11%">受賞歴</td>
+            <td colspan="4" style="width: 44%">@Model.Zyusyoureki</td>
         </tr>
         <tr>
-            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.SeihinKubun</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.SyuppinKubun</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.IkkoatariZyuuryou</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.HyouzyunKouriKakaku</td>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 32px">販売開始時期</td>
+            <td class="td-hanbai-kaisiziki" style="width: 11%">@Model.HanbaiKaisiziki</td>
+            <td class="td-color2 td-item-name" style="width: 11%">販売区分</td>
+            <td style="width: 11%">@Model.HanbaiKubun</td>
+            <td class="td-color2 td-item-name" style="width: 11%">販売先</td>
+            <td colspan="4" style="width: 44%">@Model.Hanbaisaki</td>
         </tr>
         <tr>
-            <th colspan="8" style="width: 100%; height: 27px">使用原材料（一括表示）</th>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 100px">使用原材料<br />（一括表示）</td>
+            <td colspan="8" style="width: 88%">@Model.SiyouGenzairyou</td>
         </tr>
         <tr>
-            <td colspan="8" style="width: 100%; height: 54px">@Model.SiyouGenzairyou</td>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 32px">アレルギー表示<br />（特定８品目）</td>
+            <td colspan="3" style="width: 33%">@Model.AllergyHyouzi</td>
+            <td class="td-color2 td-item-name" style="width: 11%">原料（原産地）</td>
+            <td colspan="4" style="width: 44%">@Model.Gensanti</td>
         </tr>
         <tr>
-            <th colspan="2" style="width: 25%; height: 27px">原産国区分</th>
-            <th colspan="2" style="width: 25%">アレルギー特定８品目</th>
-            <th colspan="2" style="width: 25%">賞味期限</th>
-            <th colspan="2" style="width: 25%">保存条件</th>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 32px">標準小売価格</td>
+            <td colspan="3" style="width: 33%">@Model.HyouzyunKouriKakaku</td>
+            <td class="td-color2 td-item-name" style="width: 11%">1個あたり重量</td>
+            <td colspan="4" style="width: 44%">@Model.IkkoatariZyuuryou</td>
         </tr>
         <tr>
-            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.GensankokuKubun</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.AllergyTokuteiHatihinmoku</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.SyoumiKigen</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.HozonZyouken</td>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 32px">保存条件</td>
+            <td colspan="3" style="width: 33%">@Model.HozonZyouken</td>
+            <td class="td-color2 td-item-name" style="width: 11%">賞味期限</td>
+            <td colspan="4" style="width: 44%">@Model.SyoumiKigen</td>
         </tr>
         <tr>
-            <th colspan="4" style="width: 50%; height: 27px">原料について</th>
-            <th colspan="4" style="width: 50%">おいしさについて</th>
+            <td class="td-color2 td-item-name" style="width: 11%; height: 50px">食べ方・<br />アレンジ</td>
+            <td colspan="8" style="width: 88%">@Model.Tabekata</td>
+        </tr>
+        <tr class="tr-border-none">
+            <td colspan="9" style="height: 10px;"></td>
         </tr>
         <tr>
-            <td colspan="4" style="width: 50%; height: 90px">@Model.Genryou</td>
-            <td colspan="4" style="width: 50%">@Model.Oisisa</td>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">商品特徴・<br />アピールポイント<br />について</td>
+            <td colspan="8" style="width: 88%">@Model.SyouhinTokutyou</td>
         </tr>
         <tr>
-            <th colspan="4" style="width: 50%; height: 27px">生産技術について</th>
-            <th colspan="4" style="width: 50%">安全性（衛生面）について</th>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">官能特性について<br />（味、食感等）</td>
+            <td colspan="8" style="width: 88%">@Model.KannouTokusei</td>
         </tr>
         <tr>
-            <td colspan="4" style="width: 50%; height: 90px">@Model.SeisanGizyutu</td>
-            <td colspan="4" style="width: 50%">@Model.Anzensei</td>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">着想について<br />（エピソード、<br />コンセプト等）</td>
+            <td colspan="8" style="width: 88%">@Model.Tyakusou</td>
         </tr>
         <tr>
-            <th colspan="4" style="width: 50%; height: 27px">食べ方、調理方法について</th>
-            <th colspan="4" style="width: 50%">地域貢献、ＣＳＲ、ＳＤＧｓ等の取組など</th>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">原料について</td>
+            <td colspan="8" style="width: 88%">@Model.Genryou</td>
         </tr>
         <tr>
-            <td colspan="4" style="width: 50%; height: 90px">@Model.Tabekata</td>
-            <td colspan="4" style="width: 50%">@Model.TiikiKouken</td>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">生産技術について</td>
+            <td colspan="8" style="width: 88%">@Model.SeisanGizyutu</td>
         </tr>
         <tr>
-            <th colspan="2" style="width: 25%; height: 27px">入数</th>
-            <th colspan="2" style="width: 25%">小売用／業務用</th>
-            <th colspan="2" style="width: 25%">受賞歴</th>
-            <th colspan="2" style="width: 25%">製造販売開始時期</th>
+            <td class="td-color3 td-item-name" style="width: 11%; height: 50px">その他（地域貢<br />献、ＣＳＲ、<br />ＳＤＧｓ等の取組）</td>
+            <td colspan="8" style="width: 88%">@Model.Sonota</td>
         </tr>
-        <tr>
-            <td colspan="2" class="td-center" style="width: 25%; height: 27px">@Model.Nyuusuu</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.KouriyouGyoumuyou</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.Zyusyoureki</td>
-            <td colspan="2" class="td-center" style="width: 25%">@Model.SeizouHanbaiKaisiziki</td>
+        <tr class="tr-border-none">
+            <td colspan="9" style="height: 10px;"></td>
         </tr>
-        <tr>
-            <th class="th-color1" style="width: 12.5%; height: 27px">原料（１０点）</th>
-            <th class="th-color1" style="width: 12.5%; font-size: 13px">官能特性（３０点）</th>
-            <th class="th-color1" style="width: 12.5%">着想（２０点）</th>
-            <th class="th-color1" style="width: 12.5%">技術（２０点）</th>
-            <th class="th-color1" style="width: 12.5%">包装（２０点）</th>
-            <th class="th-color3" colspan="2" style="width: 25%">合計点（１００点）</th>
-            <th class="th-color1" style="width: 12.5%">マーク</th>
+        <tr class="tr-border-none tr-score">
+            <td class="td-color1 td-item-name" style="width: 11%; height: 20px">官能特性</td>
+            <td class="td-color1 td-item-name" style="width: 11%">着　想</td>
+            <td class="td-color1 td-item-name" style="width: 11%">原　料</td>
+            <td class="td-color1 td-item-name" style="width: 11%">技　術</td>
+            <td class="td-color1 td-item-name" style="width: 11%">包　装</td>
+            <td class="td-color1 td-item-name" colspan="3" style="width: 33%">合　計</td>
+            <th class="td-color1 td-item-name" style="width: 11%">マーク</th>
         </tr>
-        <tr>
-            <td style="width: 12.5%; height: 40px"></td>
-            <td style="width: 12.5%"></td>
-            <td style="width: 12.5%"></td>
-            <td style="width: 12.5%"></td>
-            <td style="width: 12.5%"></td>
-            <td colspan="2" style="width: 25%"></td>
-            <td style="width: 12.5%"></td>
+        <tr class="tr-border-none tr-score">
+            <td style="width: 11%; height: 50px"></td>
+            <td style="width: 11%"></td>
+            <td style="width: 11%"></td>
+            <td style="width: 11%"></td>
+            <td style="width: 11%"></td>
+            <td colspan="3" style="width: 33%"></td>
+            <th style="width: 11%"></th>
         </tr>
-        <tr>
-            <th class="th-color1" style="width: 12.5%; height: 132px">特記事項</th>
-            <td colspan="7" style="width: 87.5%"></td>
+        <tr class="tr-border-none tr-score">
+            <td class="td-max-score" style="width: 11%; height: 20px">／３０点</td>
+            <td class="td-max-score" style="width: 11%">／２０点</td>
+            <td class="td-max-score" style="width: 11%">／１０点</td>
+            <td class="td-max-score" style="width: 11%">／２０点</td>
+            <td class="td-max-score" style="width: 11%">／２０点</td>
+            <td class="td-max-score" colspan="3" style="width: 33%">／１００点</td>
+            <th class="td-max-score" style="width: 11%"></th>
+        </tr>
+        <tr class="tr-border-none">
+            <td colspan="9" style="height: 6px;"></td>
+        </tr>
+        <tr class="tr-border-none">
+            <td colspan="9" class="td-color1 td-item-name" style="width: 99%; height: 20px">特記事項</td>
+        </tr>
+        <tr class="tr-border-none">
+            <td class="td-tokki-zikou" colspan="9" style="width: 99%; height: 100px">@Model.TokkiZikou</td>
         </tr>
     </table>
     <span id="layerd-canvas-area">
@@ -112,9 +139,9 @@
         <canvas id="line-width-indicator" width="980" height="1100" style="touch-action: pinch-zoom; border:none;"></canvas>
     </span>
     <div id="my-score">
-        <input type="text" id="score-genryou" class="text-score" onclick="textScoreClick(ModalTarget.GENRYOU, 11)" readonly /><!--
-     --><input type="text" id="score-kannou-tokusei" class="text-score" onclick="textScoreClick(ModalTarget.KANNOU_TOKUSEI, 31)" readonly /><!--
+        <input type="text" id="score-kannou-tokusei" class="text-score" onclick="textScoreClick(ModalTarget.KANNOU_TOKUSEI, 31)" readonly /><!--
      --><input type="text" id="score-tyakusou" class="text-score" onclick="textScoreClick(ModalTarget.TYAKUSOU, 21)" readonly /><!--
+     --><input type="text" id="score-genryou" class="text-score" onclick="textScoreClick(ModalTarget.GENRYOU, 11)" readonly /><!--
      --><input type="text" id="score-gizyutu" class="text-score" onclick="textScoreClick(ModalTarget.GIZYUTU, 21)" readonly /><!--
      --><input type="text" id="score-housou" class="text-score" onclick="textScoreClick(ModalTarget.HOUSOU, 21)" readonly /><!--
      --><input type="text" id="score-total" class="text-score-total" readonly />

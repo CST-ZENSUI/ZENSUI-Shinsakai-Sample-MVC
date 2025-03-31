@@ -37,7 +37,7 @@ namespace ZENSUI_SINSAKAI.Models
                     con.Close();
 
                     con.Open();
-                    cmd = new MySqlCommand($"SELECT ROW_NUMBER() OVER (ORDER BY A.SYUPPIN_NO) AS ROW_NO, A.SYUPPIN_NO, A.TITLE, B.SCORE_GENRYOU, B.SCORE_KANNOU_TOKUSEI, B.SCORE_TYAKUSOU, B.SCORE_GIZYUTU, B.SCORE_HOUSOU FROM SYUPPIN A INNER JOIN SAITEN B ON ( B.SINSAKAI_ID = A.SINSAKAI_ID AND B.SYUPPIN_NO = A.SYUPPIN_NO AND B.SAITENSYA_ID = {userId} ) WHERE A.SINSAKAI_ID = {sinsakaiId} AND A.SAKUZYO_FLAG = 0 ORDER BY A.SYUPPIN_NO", con);
+                    cmd = new MySqlCommand($"SELECT ROW_NUMBER() OVER (ORDER BY A.SYUPPIN_NO) AS ROW_NO, A.SYUPPIN_NO, A.TITLE1, B.SCORE_KANNOU_TOKUSEI, B.SCORE_TYAKUSOU, B.SCORE_GENRYOU, B.SCORE_GIZYUTU, B.SCORE_HOUSOU FROM SYUPPIN A INNER JOIN SAITEN B ON ( B.SINSAKAI_ID = A.SINSAKAI_ID AND B.SYUPPIN_NO = A.SYUPPIN_NO AND B.SAITENSYA_ID = {userId} ) WHERE A.SINSAKAI_ID = {sinsakaiId} AND A.SAKUZYO_FLAG = 0 ORDER BY A.SYUPPIN_NO", con);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -45,15 +45,15 @@ namespace ZENSUI_SINSAKAI.Models
                             Syuppin syuppin = new Syuppin();
                             syuppin.RowNo = Convert.ToInt32(reader["ROW_NO"]);
                             syuppin.SyuppinNo = Convert.ToInt32(reader["SYUPPIN_NO"]);
-                            syuppin.Title = reader["TITLE"].ToString();
+                            syuppin.Title1 = reader["TITLE1"].ToString();
                             sinsakai.SyuppinList.Add(syuppin);
 
-                            int? scoreGenryou = reader["SCORE_GENRYOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GENRYOU"]);
                             int? scoreKannouTokusei = reader["SCORE_KANNOU_TOKUSEI"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_KANNOU_TOKUSEI"]);
                             int? scoreTyakusou = reader["SCORE_TYAKUSOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_TYAKUSOU"]);
+                            int? scoreGenryou = reader["SCORE_GENRYOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GENRYOU"]);
                             int? scoreGizyutu = reader["SCORE_GIZYUTU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GIZYUTU"]);
                             int? scoreHousou = reader["SCORE_HOUSOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_HOUSOU"]);
-                            int? scoreTotal = GetScoreTotal(scoreGenryou, scoreKannouTokusei, scoreTyakusou, scoreGizyutu, scoreHousou);
+                            int? scoreTotal = GetScoreTotal(scoreKannouTokusei, scoreTyakusou, scoreGenryou, scoreGizyutu, scoreHousou);
                             sinsakai.ScoreTotalList.Add(scoreTotal);
                         }
                     }
@@ -76,34 +76,38 @@ namespace ZENSUI_SINSAKAI.Models
                 using (MySqlConnection con = new MySqlConnection(config["ConnectionStrings:DefaultConnection"]))
                 {
                     con.Open();
-                    var cmd = new MySqlCommand($"SELECT SYUPPIN_NO, TITLE, IMAGE1, IMAGE2, SEIHIN_KUBUN, SYUPPIN_KUBUN, IKKOATARI_ZYUURYOU, HYOUZYUN_KOURI_KAKAKU, SIYOU_GENZAIRYOU, GENSANKOKU_KUBUN, ALLERGY_TOKUTEI_HATIHINMOKU, SYOUMI_KIGEN, HOZON_ZYOUKEN, GENRYOU, OISISA, SEISAN_GIZYUTU, ANZENSEI, TABEKATA, TIIKI_KOUKEN, NYUUSUU, KOURIYOU_GYOUMUYOU, ZYUSYOUREKI, SEIZOU_HANBAI_KAISIZIKI FROM SYUPPIN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAKUZYO_FLAG = 0", con);
+                    var cmd = new MySqlCommand($"SELECT SYUPPIN_NO, TITLE1, TITLE2, IMAGE1, IMAGE2, IMAGE3, SEIHIN_KUBUN, SYUPPIN_KUBUN, ZYUSYOUREKI, HANBAI_KAISIZIKI, HANBAI_KUBUN, HANBAISAKI, SIYOU_GENZAIRYOU, ALLERGY_HYOUZI, GENSANTI, HYOUZYUN_KOURI_KAKAKU, IKKOATARI_ZYUURYOU, HOZON_ZYOUKEN, SYOUMI_KIGEN, TABEKATA, SYOUHIN_TOKUTYOU, KANNOU_TOKUSEI, TYAKUSOU, GENRYOU, SEISAN_GIZYUTU, SONOTA, TOKKI_ZIKOU FROM SYUPPIN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAKUZYO_FLAG = 0", con);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         reader.Read();
                         syuppin.RowNo = rowNo;
                         syuppin.SyuppinNo = Convert.ToInt32(reader["SYUPPIN_NO"]);
-                        syuppin.Title = reader["TITLE"].ToString();
+                        syuppin.Title1 = reader["TITLE1"].ToString();
+                        syuppin.Title2 = reader["TITLE2"].ToString();
                         syuppin.Image1 = "data:image/jpeg;base64," + (reader["IMAGE1"] == DBNull.Value ? "" : Convert.ToBase64String((byte[])reader["IMAGE1"]));
                         syuppin.Image2 = "data:image/jpeg;base64," + (reader["IMAGE2"] == DBNull.Value ? "" : Convert.ToBase64String((byte[])reader["IMAGE2"]));
+                        syuppin.Image3 = "data:image/jpeg;base64," + (reader["IMAGE3"] == DBNull.Value ? "" : Convert.ToBase64String((byte[])reader["IMAGE3"]));
                         syuppin.SeihinKubun = reader["SEIHIN_KUBUN"].ToString();
                         syuppin.SyuppinKubun = reader["SYUPPIN_KUBUN"].ToString();
-                        syuppin.IkkoatariZyuuryou = reader["IKKOATARI_ZYUURYOU"].ToString();
-                        syuppin.HyouzyunKouriKakaku = reader["HYOUZYUN_KOURI_KAKAKU"].ToString();
-                        syuppin.SiyouGenzairyou = reader["SIYOU_GENZAIRYOU"].ToString();
-                        syuppin.GensankokuKubun = reader["GENSANKOKU_KUBUN"].ToString();
-                        syuppin.AllergyTokuteiHatihinmoku = reader["ALLERGY_TOKUTEI_HATIHINMOKU"].ToString();
-                        syuppin.SyoumiKigen = reader["SYOUMI_KIGEN"].ToString();
-                        syuppin.HozonZyouken = reader["HOZON_ZYOUKEN"].ToString();
-                        syuppin.Genryou = reader["GENRYOU"].ToString();
-                        syuppin.Oisisa = reader["OISISA"].ToString();
-                        syuppin.SeisanGizyutu = reader["SEISAN_GIZYUTU"].ToString();
-                        syuppin.Anzensei = reader["ANZENSEI"].ToString();
-                        syuppin.Tabekata = reader["TABEKATA"].ToString();
-                        syuppin.TiikiKouken = reader["TIIKI_KOUKEN"].ToString();
-                        syuppin.Nyuusuu = reader["NYUUSUU"].ToString();
-                        syuppin.KouriyouGyoumuyou = reader["KOURIYOU_GYOUMUYOU"].ToString();
                         syuppin.Zyusyoureki = reader["ZYUSYOUREKI"].ToString();
-                        syuppin.SeizouHanbaiKaisiziki = reader["SEIZOU_HANBAI_KAISIZIKI"].ToString();
+                        syuppin.HanbaiKaisiziki = reader["HANBAI_KAISIZIKI"].ToString();
+                        syuppin.HanbaiKubun = reader["HANBAI_KUBUN"].ToString();
+                        syuppin.Hanbaisaki = reader["HANBAISAKI"].ToString();
+                        syuppin.SiyouGenzairyou = reader["SIYOU_GENZAIRYOU"].ToString();
+                        syuppin.AllergyHyouzi = reader["ALLERGY_HYOUZI"].ToString();
+                        syuppin.Gensanti = reader["GENSANTI"].ToString();
+                        syuppin.HyouzyunKouriKakaku = reader["HYOUZYUN_KOURI_KAKAKU"].ToString();
+                        syuppin.IkkoatariZyuuryou = reader["IKKOATARI_ZYUURYOU"].ToString();
+                        syuppin.HozonZyouken = reader["HOZON_ZYOUKEN"].ToString();
+                        syuppin.SyoumiKigen = reader["SYOUMI_KIGEN"].ToString();
+                        syuppin.Tabekata = reader["TABEKATA"].ToString();
+                        syuppin.SyouhinTokutyou = reader["SYOUHIN_TOKUTYOU"].ToString();
+                        syuppin.KannouTokusei = reader["KANNOU_TOKUSEI"].ToString();
+                        syuppin.Tyakusou = reader["TYAKUSOU"].ToString();
+                        syuppin.Genryou = reader["GENRYOU"].ToString();
+                        syuppin.SeisanGizyutu = reader["SEISAN_GIZYUTU"].ToString();
+                        syuppin.Sonota = reader["SONOTA"].ToString();
+                        syuppin.TokkiZikou = reader["TOKKI_ZIKOU"].ToString();
                     }
                     con.Close();
                 }
@@ -199,16 +203,16 @@ namespace ZENSUI_SINSAKAI.Models
                 using (MySqlConnection con = new MySqlConnection(config["ConnectionStrings:DefaultConnection"]))
                 {
                     con.Open();
-                    var cmd = new MySqlCommand($"SELECT SCORE_GENRYOU, SCORE_KANNOU_TOKUSEI, SCORE_TYAKUSOU, SCORE_GIZYUTU, SCORE_HOUSOU FROM SAITEN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAITENSYA_ID = {saitensyaId} AND SAKUZYO_FLAG = 0", con);
+                    var cmd = new MySqlCommand($"SELECT SCORE_KANNOU_TOKUSEI, SCORE_TYAKUSOU, SCORE_GENRYOU, SCORE_GIZYUTU, SCORE_HOUSOU FROM SAITEN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAITENSYA_ID = {saitensyaId} AND SAKUZYO_FLAG = 0", con);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         reader.Read();
-                        score.ScoreGenryou = reader["SCORE_GENRYOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GENRYOU"]);
                         score.ScoreKannouTokusei = reader["SCORE_KANNOU_TOKUSEI"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_KANNOU_TOKUSEI"]);
                         score.ScoreTyakusou = reader["SCORE_TYAKUSOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_TYAKUSOU"]);
+                        score.ScoreGenryou = reader["SCORE_GENRYOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GENRYOU"]);
                         score.ScoreGizyutu = reader["SCORE_GIZYUTU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_GIZYUTU"]);
                         score.ScoreHousou = reader["SCORE_HOUSOU"] == DBNull.Value ? null : Convert.ToInt32(reader["SCORE_HOUSOU"]);
-                        score.ScoreTotal = GetScoreTotal(score.ScoreGenryou, score.ScoreKannouTokusei, score.ScoreTyakusou, score.ScoreGizyutu, score.ScoreHousou);
+                        score.ScoreTotal = GetScoreTotal(score.ScoreKannouTokusei, score.ScoreTyakusou, score.ScoreGenryou, score.ScoreGizyutu, score.ScoreHousou);
                     }
                     con.Close();
                 }
@@ -220,11 +224,11 @@ namespace ZENSUI_SINSAKAI.Models
             return score;
         }
 
-        public bool RegistScore(int sinsakaiId, int syuppinNo, int saitensyaId, int? scoreGenryou, int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGizyutu, int? scoreHousou)
+        public bool RegistScore(int sinsakaiId, int syuppinNo, int saitensyaId, int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGenryou, int? scoreGizyutu, int? scoreHousou)
         {
             try
             {
-                var sql = "UPDATE SAITEN SET SCORE_GENRYOU = @scoreGenryou, SCORE_KANNOU_TOKUSEI = @scoreKannouTokusei, SCORE_TYAKUSOU = @scoreTyakusou, SCORE_GIZYUTU = @scoreGizyutu, SCORE_HOUSOU = @scoreHousou WHERE SINSAKAI_ID = @sinsakaiId AND SYUPPIN_NO = @syuppinNo AND SAITENSYA_ID = @saitensyaId";
+                var sql = "UPDATE SAITEN SET SCORE_KANNOU_TOKUSEI = @scoreKannouTokusei, SCORE_TYAKUSOU = @scoreTyakusou, SCORE_GENRYOU = @scoreGenryou, SCORE_GIZYUTU = @scoreGizyutu, SCORE_HOUSOU = @scoreHousou WHERE SINSAKAI_ID = @sinsakaiId AND SYUPPIN_NO = @syuppinNo AND SAITENSYA_ID = @saitensyaId";
                 using (MySqlConnection con = new MySqlConnection(config["ConnectionStrings:DefaultConnection"]))
                 {
                     using (MySqlCommand cmd = new MySqlCommand(sql, con))
@@ -239,9 +243,9 @@ namespace ZENSUI_SINSAKAI.Models
                             tran = con.BeginTransaction();
 
                             cmd.CommandText = sql;
-                            cmd.Parameters.AddWithValue("@scoreGenryou", scoreGenryou);
                             cmd.Parameters.AddWithValue("@scoreKannouTokusei", scoreKannouTokusei);
                             cmd.Parameters.AddWithValue("@scoreTyakusou", scoreTyakusou);
+                            cmd.Parameters.AddWithValue("@scoreGenryou", scoreGenryou);
                             cmd.Parameters.AddWithValue("@scoreGizyutu", scoreGizyutu);
                             cmd.Parameters.AddWithValue("@scoreHousou", scoreHousou);
                             cmd.Parameters.AddWithValue("@sinsakaiId", sinsakaiId);
@@ -271,11 +275,11 @@ namespace ZENSUI_SINSAKAI.Models
             }
         }
 
-        private int? GetScoreTotal(int? scoreGenryou, int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGizyutu, int? scoreHousou)
+        private int? GetScoreTotal(int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGenryou, int? scoreGizyutu, int? scoreHousou)
         {
-            if (scoreGenryou != null || scoreKannouTokusei != null || scoreTyakusou != null || scoreGizyutu != null || scoreHousou != null)
+            if (scoreKannouTokusei != null || scoreTyakusou != null || scoreGenryou != null || scoreGizyutu != null || scoreHousou != null)
             {
-                return (scoreGenryou ?? 0) + (scoreKannouTokusei ?? 0) + (scoreTyakusou ?? 0) + (scoreGizyutu ?? 0) + (scoreHousou ?? 0);
+                return (scoreKannouTokusei ?? 0) + (scoreTyakusou ?? 0) + (scoreGenryou ?? 0) + (scoreGizyutu ?? 0) + (scoreHousou ?? 0);
             }
             else
             {

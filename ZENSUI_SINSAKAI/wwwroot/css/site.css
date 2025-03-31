@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap');
+
 html {
 	font-size: 19px;
 	user-select: none;
@@ -22,7 +24,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+	font-family: 'BIZ UDGothic', sans-serif;
+	margin-bottom: 60px;
 }
 
 .container {
@@ -41,11 +44,11 @@ body {
 
 #my-action {
 	width: 980px;
+	font-size: 20px;
 }
 
 #my-action input[type="button"] {
 	height: 47px;
-	font-size: 22px;
 }
 
 #my-action input[type="radio"] {
@@ -53,48 +56,88 @@ body {
 }
 
 #my-table {
-	font-size: 15px;
+	font-size: 14px;
+	line-height: 1em;
 	width: 980px;
 	height: 1100px;
-	border: 1px solid black;
+	border: none;
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
-#my-table th {
-	font-weight: normal;
-	text-align: center;
-	background-color: lavender;
-	z-index: 1;
+#my-table tr {
+	border-bottom: 1px solid #000000;
 }
 
 #my-table td {
+	border-left: none;
+	border-right: none;
 	padding: 0 14px;
 	z-index: 1000;
 }
 
-.th-color1 {
-	background-color: antiquewhite !important;
+.tr-title {
+	font-size: 20px;
 }
 
-.th-color2 {
-	background-color: white !important;
+.tr-border-none {
+	border: none !important;
 }
 
-.th-color3 {
-	background-color: darkorange !important;
+.tr-score td {
+	border-right: 1px solid black !important
 }
 
-.td-center {
+.td-color1 {
+	background-color: royalblue !important;
+	color: white !important;
+}
+
+.td-color2 {
+	background-color: aliceblue !important;
+}
+
+.td-color3 {
+	background-color: cornflowerblue !important;
+}
+
+.td-row-no {
 	text-align: center;
 }
 
+.td-item-name {
+	font-size: 12px;
+	text-align: center;
+	padding: 0px !important;
+}
+
+.td-max-score {
+	font-size: 12px;
+	text-align: right;
+	padding-right: 5px !important;
+}
+
+.td-hanbai-kaisiziki {
+	font-size: 12px;
+	letter-spacing: -3px;
+	text-align: center;
+	padding: 0px !important;
+}
+
+.td-tokki-zikou {
+	text-align: center;
+}
+
+.td-total-score {
+	font-size: 27px;
+}
+
 .my-image {
-	max-width: 100%;
-	max-height: 100%;
+	width: 100%;
+	height: 100%;
 	padding: 7px;
-	object-fit: cover;
+	object-fit: contain;
 	-webkit-user-select: none;
 	pointer-events: none;
 	-webkit-touch-callout: none;
@@ -116,30 +159,31 @@ body {
 
 #my-score {
 	width: 980px;
-	height: 41px;
-	border: 1px solid black;
+	height: 50px;
 	pointer-events: none;
 	position: absolute;
-	top: 928px;
+	top: 903px;
 	left: 0;
 	z-index: 4;
 }
 
 #my-score input[type="text"] {
 	pointer-events: auto;
+	margin: 2px;
+	border: none;
+	outline: none;
 }
 
 .text-score {
-	width: 12.5%;
+	width: calc(11% - 3px);
 	height: 100%;
 	text-align: center;
 }
 
 .text-score-total {
-	width: 25%;
+	width: 33%;
 	height: 100%;
 	text-align: center;
-	border: 1px solid red;
 }
 
 #clearButton {
@@ -154,10 +198,6 @@ body {
 
 input[type=button] {
 	color: black;
-}
-
-tbody, td, tfoot, th, thead, tr {
-	border: 1px solid #000000;
 }
 
 #my-main2 {

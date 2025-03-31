@@ -66,10 +66,10 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public ActionResult RegistScore(int sinsakaiId, int syuppinNo, int saitensyaId, int? scoreGenryou, int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGizyutu, int? scoreHousou)
+    public ActionResult RegistScore(int sinsakaiId, int syuppinNo, int saitensyaId, int? scoreKannouTokusei, int? scoreTyakusou, int? scoreGenryou, int? scoreGizyutu, int? scoreHousou)
     {
         SinsakaiModel sinsakaiModel = new SinsakaiModel();
-        bool result = sinsakaiModel.RegistScore(sinsakaiId, syuppinNo, saitensyaId, scoreGenryou, scoreKannouTokusei, scoreTyakusou, scoreGizyutu, scoreHousou);
+        bool result = sinsakaiModel.RegistScore(sinsakaiId, syuppinNo, saitensyaId, scoreKannouTokusei, scoreTyakusou, scoreGenryou, scoreGizyutu, scoreHousou);
 
         return View();
     }
