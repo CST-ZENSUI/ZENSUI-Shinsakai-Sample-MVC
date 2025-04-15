@@ -1,7 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap');
+@font-face {
+	font-family: 'BIZUDGothic-Regular';
+	src: url('../fonts/BIZUDGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDGothic-Bold';
+	src: url('../fonts/BIZUDGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDMincho-Regular';
+	src: url('../fonts/BIZUDMincho-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDMincho-Bold';
+	src: url('../fonts/BIZUDMincho-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDPGothic-Regular';
+	src: url('../fonts/BIZUDPGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDPGothic-Bold';
+	src: url('../fonts/BIZUDPGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDPMincho-Regular';
+	src: url('../fonts/BIZUDPMincho-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'BIZUDPMincho-Bold';
+	src: url('../fonts/BIZUDPMincho-Bold.ttf') format('truetype');
+}
+
+.BIZUDGothic-Regular {
+	font-family: 'BIZUDGothic-Regular';
+}
+
+.BIZUDGothic-Bold {
+	font-family: 'BIZUDGothic-Bold';
+}
+
+.BIZUDMincho-Regular {
+	font-family: 'BIZUDMincho-Regular';
+}
+
+.BIZUDMincho-Bold {
+	font-family: 'BIZUDMincho-Bold';
+}
+
+.BIZUDPGothic-Regular {
+	font-family: 'BIZUDPGothic-Regular';
+}
+
+.BIZUDPGothic-Bold {
+	font-family: 'BIZUDPGothic-Bold';
+}
+
+.BIZUDPMincho-Regular {
+	font-family: 'BIZUDPMincho-Regular';
+}
+
+.BIZUDPMincho-Bold {
+	font-family: 'BIZUDPMincho-Bold';
+}
 
 html {
-	font-size: 19px;
+	font-size: 14px;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -10,7 +80,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 22px;
+    font-size: 14px;
   }
 }
 
@@ -24,7 +94,7 @@ html {
 }
 
 body {
-	font-family: 'BIZ UDGothic', sans-serif;
+	font-family: 'BIZUDPGothic-Regular', sans-serif;
 	margin-bottom: 60px;
 }
 
@@ -36,7 +106,7 @@ body {
 
 #my-main {
 	width: 980px;
-	height: 1100px;
+	height: 1200px;
 	position: relative;
 	top: 0;
 	left: 0;
@@ -44,7 +114,8 @@ body {
 
 #my-action {
 	width: 980px;
-	font-size: 20px;
+	font-size: 19px;
+	margin-top: 10px;
 }
 
 #my-action input[type="button"] {
@@ -59,8 +130,8 @@ body {
 	font-size: 14px;
 	line-height: 1em;
 	width: 980px;
-	height: 1100px;
-	border: none;
+	height: 1200px;
+	border: 2px solid #000000;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -73,16 +144,69 @@ body {
 #my-table td {
 	border-left: none;
 	border-right: none;
-	padding: 0 14px;
+	padding: 0 0 0 14px;
 	z-index: 1000;
 }
 
+#my-table col:nth-child(1) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(2) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(3) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(4) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(5) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(6) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(7) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(8) {
+	width: calc(100% / 9);
+}
+
+#my-table col:nth-child(9) {
+	width: calc(100% / 9);
+}
+
+#my-table pre {
+	font-family: inherit;
+	font-size: inherit;
+	display: inline;
+	vertical-align: middle;
+	white-space: pre-wrap;
+}
+
 .tr-title {
-	font-size: 20px;
+	font-size: 19px;
 }
 
 .tr-border-none {
 	border: none !important;
+}
+
+.tr-font-bold {
+	font-family: 'BIZUDPGothic-Bold', sans-serif;
+}
+
+.tr-image td {
+	padding: 0 !important;
+	border-right: 1px solid black !important
 }
 
 .tr-score td {
@@ -90,39 +214,36 @@ body {
 }
 
 .td-color1 {
-	background-color: royalblue !important;
+	background-color: #4472C4 !important;
 	color: white !important;
 }
 
 .td-color2 {
-	background-color: aliceblue !important;
+	background-color: #D9E1F2 !important;
 }
 
 .td-color3 {
-	background-color: cornflowerblue !important;
+	background-color: #B4C6E7 !important;
 }
 
 .td-row-no {
 	text-align: center;
 }
 
+.td-title2 {
+	font-size: 14px;
+}
+
 .td-item-name {
-	font-size: 12px;
+	font-size: 11px;
 	text-align: center;
-	padding: 0px !important;
+	padding: 0 4px !important;
 }
 
 .td-max-score {
-	font-size: 12px;
+	font-size: 11px;
 	text-align: right;
 	padding-right: 5px !important;
-}
-
-.td-hanbai-kaisiziki {
-	font-size: 12px;
-	letter-spacing: -3px;
-	text-align: center;
-	padding: 0px !important;
 }
 
 .td-tokki-zikou {
@@ -138,8 +259,8 @@ body {
 	height: 100%;
 	padding: 7px;
 	object-fit: contain;
-	-webkit-user-select: none;
 	pointer-events: none;
+	-webkit-user-select: none;
 	-webkit-touch-callout: none;
 }
 
@@ -158,26 +279,29 @@ body {
 }
 
 #my-score {
+	font-size: 19px;
 	width: 980px;
-	height: 50px;
+	height: 57px;
 	pointer-events: none;
 	position: absolute;
-	top: 903px;
+	top: 1008px;
 	left: 0;
 	z-index: 4;
 }
 
 #my-score input[type="text"] {
-	pointer-events: auto;
-	margin: 2px;
+	margin: 0 2px;
 	border: none;
 	outline: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
 }
 
 .text-score {
 	width: calc(11% - 3px);
 	height: 100%;
 	text-align: center;
+	pointer-events: auto;
 }
 
 .text-score-total {
@@ -208,7 +332,7 @@ input[type=button] {
 
 #itiran {
 	width: 985px;
-	height: 1100px;
+	height: 1200px;
 	padding: 20px;
 	position: relative;
 	top: 0;
@@ -371,7 +495,7 @@ input[type=button] {
 }
 
 .modal-body {
-	font-size: 20px;
+	font-size: 16px;
 	padding: 14px 27px;
 	color: black;
 }

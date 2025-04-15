@@ -14,9 +14,10 @@
         public string? Zyusyoureki { get; set; }
         public string? HanbaiKaisiziki { get; set; }
         public string? HanbaiKubun { get; set; }
-        public string? Hanbaisaki { get; set; }
+        public string? HanbaiTaisyou { get; set; }
         public string? SiyouGenzairyou { get; set; }
         public string? AllergyHyouzi { get; set; }
+        public string? Syugenryou { get; set; }
         public string? Gensanti { get; set; }
         public string? HyouzyunKouriKakaku { get; set; }
         public string? IkkoatariZyuuryou { get; set; }
@@ -29,6 +30,5 @@
         public string? Genryou { get; set; }
         public string? SeisanGizyutu { get; set; }
         public string? Sonota { get; set; }
-        public string? TokkiZikou { get; set; }
     }
 }

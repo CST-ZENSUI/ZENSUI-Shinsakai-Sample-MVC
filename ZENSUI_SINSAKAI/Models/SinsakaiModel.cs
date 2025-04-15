@@ -76,7 +76,7 @@ namespace ZENSUI_SINSAKAI.Models
                 using (MySqlConnection con = new MySqlConnection(config["ConnectionStrings:DefaultConnection"]))
                 {
                     con.Open();
-                    var cmd = new MySqlCommand($"SELECT SYUPPIN_NO, TITLE1, TITLE2, IMAGE1, IMAGE2, IMAGE3, SEIHIN_KUBUN, SYUPPIN_KUBUN, ZYUSYOUREKI, HANBAI_KAISIZIKI, HANBAI_KUBUN, HANBAISAKI, SIYOU_GENZAIRYOU, ALLERGY_HYOUZI, GENSANTI, HYOUZYUN_KOURI_KAKAKU, IKKOATARI_ZYUURYOU, HOZON_ZYOUKEN, SYOUMI_KIGEN, TABEKATA, SYOUHIN_TOKUTYOU, KANNOU_TOKUSEI, TYAKUSOU, GENRYOU, SEISAN_GIZYUTU, SONOTA, TOKKI_ZIKOU FROM SYUPPIN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAKUZYO_FLAG = 0", con);
+                    var cmd = new MySqlCommand($"SELECT SYUPPIN_NO, TITLE1, TITLE2, IMAGE1, IMAGE2, IMAGE3, SEIHIN_KUBUN, SYUPPIN_KUBUN, ZYUSYOUREKI, HANBAI_KAISIZIKI, HANBAI_KUBUN, HANBAI_TAISYOU, SIYOU_GENZAIRYOU, ALLERGY_HYOUZI, SYUGENRYOU, GENSANTI, HYOUZYUN_KOURI_KAKAKU, IKKOATARI_ZYUURYOU, HOZON_ZYOUKEN, SYOUMI_KIGEN, TABEKATA, SYOUHIN_TOKUTYOU, KANNOU_TOKUSEI, TYAKUSOU, GENRYOU, SEISAN_GIZYUTU, SONOTA FROM SYUPPIN WHERE SINSAKAI_ID = {sinsakaiId} AND SYUPPIN_NO = {syuppinNo} AND SAKUZYO_FLAG = 0", con);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         reader.Read();
@@ -92,9 +92,10 @@ namespace ZENSUI_SINSAKAI.Models
                         syuppin.Zyusyoureki = reader["ZYUSYOUREKI"].ToString();
                         syuppin.HanbaiKaisiziki = reader["HANBAI_KAISIZIKI"].ToString();
                         syuppin.HanbaiKubun = reader["HANBAI_KUBUN"].ToString();
-                        syuppin.Hanbaisaki = reader["HANBAISAKI"].ToString();
+                        syuppin.HanbaiTaisyou = reader["HANBAI_TAISYOU"].ToString();
                         syuppin.SiyouGenzairyou = reader["SIYOU_GENZAIRYOU"].ToString();
                         syuppin.AllergyHyouzi = reader["ALLERGY_HYOUZI"].ToString();
+                        syuppin.Syugenryou = reader["SYUGENRYOU"].ToString();
                         syuppin.Gensanti = reader["GENSANTI"].ToString();
                         syuppin.HyouzyunKouriKakaku = reader["HYOUZYUN_KOURI_KAKAKU"].ToString();
                         syuppin.IkkoatariZyuuryou = reader["IKKOATARI_ZYUURYOU"].ToString();
@@ -107,7 +108,6 @@ namespace ZENSUI_SINSAKAI.Models
                         syuppin.Genryou = reader["GENRYOU"].ToString();
                         syuppin.SeisanGizyutu = reader["SEISAN_GIZYUTU"].ToString();
                         syuppin.Sonota = reader["SONOTA"].ToString();
-                        syuppin.TokkiZikou = reader["TOKKI_ZIKOU"].ToString();
                     }
                     con.Close();
                 }
